@@ -6,10 +6,20 @@ import "./App.css"
 import Students from "./pages/Students";
 import Classes from "./pages/Classes";
 import StudentForm from "./pages/StudentForm";
+import Navbar from "./components/Navbar";
 
 function PrivateRoute({ children }: { children: JSX.Element }) {
   const { token } = useAuth();
   return token ? children : <Navigate to="/login" />;
+}
+
+function Layout({ children }: { children: JSX.Element }) {
+  return (
+    <>
+      <Navbar />
+      {children}
+    </>
+  );
 }
 
 export default function App() {
@@ -21,7 +31,9 @@ export default function App() {
           path="/students"
           element={
             <PrivateRoute>
-              <Students />
+              <Layout>
+                <Students />
+              </Layout>
             </PrivateRoute>
           }
         />
@@ -29,7 +41,9 @@ export default function App() {
           path="/students/add"
           element={
             <PrivateRoute>
-              <StudentForm />
+              <Layout>
+                <StudentForm />
+              </Layout>
             </PrivateRoute>
           }
         />
@@ -37,7 +51,9 @@ export default function App() {
           path="/students/edit/:id"
           element={
             <PrivateRoute>
-              <StudentForm />
+              <Layout>
+                <StudentForm />
+              </Layout>
             </PrivateRoute>
           }
         />
@@ -45,7 +61,9 @@ export default function App() {
           path="/classes"
           element={
             <PrivateRoute>
-              <Classes />
+              <Layout>
+                <Classes />
+              </Layout>
             </PrivateRoute>
           }
         />
