@@ -5,6 +5,7 @@ import type { JSX } from "react";
 import "./App.css"
 import Students from "./pages/Students";
 import Classes from "./pages/Classes";
+import StudentForm from "./pages/StudentForm";
 
 function PrivateRoute({ children }: { children: JSX.Element }) {
   const { token } = useAuth();
@@ -21,6 +22,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <Students />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/students/add"
+          element={
+            <PrivateRoute>
+              <StudentForm />
             </PrivateRoute>
           }
         />

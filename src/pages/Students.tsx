@@ -7,7 +7,6 @@ interface Student {
   lastName: string;
   emailId: string;
   phoneNumber: string;
-  classIds: number[];
 }
 
 export default function Students() {
@@ -31,7 +30,7 @@ export default function Students() {
   );
 
   if (loading) return <div className="p-8 text-center">Loading...</div>;
-  if (error) return <div className="p-8 text-red-600">{error}</div>;
+  if (error) return <div className="p-8 text-red-600">{"Error:" + error}</div>;
 
   return (
     <div className="p-8">
@@ -61,7 +60,6 @@ export default function Students() {
               <td className="px-4 py-2">{student.firstName} {student.lastName}</td>
               <td className="px-4 py-2">{student.emailId}</td>
               <td className="px-4 py-2">{student.phoneNumber}</td>
-              <td className="px-4 py-2">{student.classIds.join(", ") || "-"}</td>
             </tr>
           ))}
         </tbody>
