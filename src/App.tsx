@@ -13,6 +13,11 @@ function PrivateRoute({ children }: { children: JSX.Element }) {
   return token ? children : <Navigate to="/login" />;
 }
 
+function PublicRoute({ children }: { children: JSX.Element }) {
+  const { token } = useAuth();
+  return token ? <Navigate to="/students" replace /> : children;
+}
+
 function Layout({ children }: { children: JSX.Element }) {
   return (
     <>
@@ -26,7 +31,14 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
         <Route
           path="/students"
           element={
