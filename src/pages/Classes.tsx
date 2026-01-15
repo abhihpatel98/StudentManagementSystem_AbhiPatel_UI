@@ -1,11 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import api from "../api/axios";
-
-interface Class {
-  id: number;
-  name: string;
-  description: string;
-}
+import type Class from "../interfaces/Class";
 
 export default function Classes() {
   const [classes, setClasses] = useState<Class[]>([]);

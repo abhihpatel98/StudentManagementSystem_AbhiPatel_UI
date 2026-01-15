@@ -34,6 +34,14 @@ export default function App() {
           }
         />
         <Route
+          path="/students/edit/:id"
+          element={
+            <PrivateRoute>
+              <StudentForm />
+            </PrivateRoute>
+          }
+        />
+        <Route
           path="/classes"
           element={
             <PrivateRoute>

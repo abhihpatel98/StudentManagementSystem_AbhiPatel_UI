@@ -40,7 +40,20 @@ export default function StudentForm() {
   useEffect(() => {
     if (!id) return;
     api.get(`/students/${id}`)
-      .then(res => setForm({ ...res.data, classIds: res.data.classIds || [] }))
+      .then(res => {
+        const studentData = res.data;
+        // Extract class IDs from classes array if present, otherwise use classIds
+        const classIds = studentData.classes 
+          ? studentData.classes.map((c: any) => c.id)
+          : (studentData.classIds || []);
+        setForm({
+          firstName: studentData.firstName,
+          lastName: studentData.lastName,
+          emailId: studentData.emailId,
+          phoneNumber: studentData.phoneNumber,
+          classIds: classIds,
+        });
+      })
       .catch(() => setError("Failed to load student"));
   }, [id]);
 
