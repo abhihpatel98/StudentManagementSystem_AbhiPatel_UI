@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import { useAuth } from "./auth/AuthContext";
 import type { JSX } from "react";
 import "./App.css"
+import Students from "./pages/Students";
 
 function PrivateRoute({ children }: { children: JSX.Element }) {
   const { token } = useAuth();
@@ -18,7 +19,7 @@ export default function App() {
           path="/students"
           element={
             <PrivateRoute>
-              <></>
+              <Students />
             </PrivateRoute>
           }
         />
